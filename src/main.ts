@@ -37,4 +37,28 @@ function ParseListActual(elements: string[], i: number): [List, number] {
 
 	}
 
+	while( i < elements.length){
+		if(elements[i] === ListCloseDelimeter) {
+			AddAtom();
+			return [result, i + 1];
+		}
+
+		if(elements[i] === ListOpenDelimeter) {
+			const [r,k] = ParseListActual(elements, i+1);
+			i = k;
+			result.items.push(r);
+			continue
+		}
+
+		if(elements[i] === ListElementDelimeter){
+			AddAtom();
+			atomStart = -1;
+		}else{
+			if(atomStart == -1){
+				atomStart = i;
+			}
+		}
+		i++;
+	}
+  return [result, i];
 }
