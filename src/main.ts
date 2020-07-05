@@ -2,8 +2,11 @@ export function ToChars(s: string): string[] {
 	return Array.from(s)
 }
 
-// Atom is the basic unit in Lisp
-// it could be a number or a symbol
+
+
+
+
+
 export interface Atom {
 	value: number | string
 }
@@ -18,7 +21,7 @@ export function ParseAtom(s : string): Atom {
 
 }
 
-export interface List{
+    export interface List{
 	items : (Atom | List)[]
 }
 
@@ -39,14 +42,14 @@ function ParseListActual(elements: string[], i: number): [List, number] {
 
 	while( i < elements.length){
 		if(elements[i] === ListCloseDelimeter) {
-			AddAtom();
+			       AddAtom();
 			return [result, i + 1];
 		}
 
 		if(elements[i] === ListOpenDelimeter) {
 			const [r,k] = ParseListActual(elements, i+1);
 			i = k;
-			result.items.push(r);
+			     result.items.push(r);
 			continue
 		}
 
@@ -67,7 +70,7 @@ export function ParseList(s :  string) : List {
 	if(s.length == 0) throw new Error("Expect a valid string here");
 	s = s.trim();
 	if(s[0] !== '(') throw new Error("Debut '('  non trouve");
-	const elements = ToChars(s);
+const elements = ToChars(s);
 
 	const [l, m] = ParseListActual(elements, 0);
 	return <List>l.items[0];
@@ -106,7 +109,7 @@ type basicArithmeticOp = (a: Atom , b :Atom ) => Atom
 interface FunMap {
 	[key : string] : basicArithmeticOp
 }
-type ArithmeticOp = (c : number, d : number) => number;
+     type ArithmeticOp = (c : number, d : number) => number;
 const validate =  ( a : Atom , b : Atom , op : ArithmeticOp) : Atom => {
 	if(typeof a.value === 'number' && typeof b.value === 'number'){
 		return <Atom>{value : op(a.value, b.value)}
