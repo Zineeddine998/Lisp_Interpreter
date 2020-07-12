@@ -1,3 +1,5 @@
+//Add your tests here
+
 import { ToChars, Atom, ParseAtom, List, ParseList, isAtom, isList, first, rest, Eval } from './main'
 
 test('should return an array of chars, given a string', () => {
@@ -10,7 +12,7 @@ test('should return an array of chars, given a string', () => {
     expect(result).toBe(true)
 })
 
-// Tests fro Atom
+
 test('should return a number Atom, given a string containing a number', () => {
     const actual = ParseAtom('1')
     const expected = <Atom>{ value: 1 }
