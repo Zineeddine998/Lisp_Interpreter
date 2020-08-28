@@ -1,4 +1,4 @@
-//Add your tests here
+// Passes all the test cases
 
 import { ToChars, Atom, ParseAtom, List, ParseList, isAtom, isList, first, rest, Eval } from './main'
 
